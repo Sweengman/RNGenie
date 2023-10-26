@@ -5,8 +5,8 @@ import { getUser } from '../../utilities/users-service'
 import { useState } from 'react'
 import AuthPage from '../AuthPage/AuthPage'
 import NavBar from '../../components/NavBar/NavBar'
-import NewOrderPage from '../NewOrderPage/NewOrderPage'
-import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage'
+import NewMap from '../NewMap/NewMap'
+import MapsList from '../MapsList/MapsList'
 
 
 export default function App() {
@@ -17,8 +17,8 @@ export default function App() {
         <> 
           <NavBar user={user} />
           <Routes>
-            <Route path="/orders/new" element={ <NewOrderPage /> } />
-            <Route path="/orders" element={ <OrderHistoryPage /> } />
+            <Route path="/battlemaps/new" element={ <NewMap /> } />
+            <Route path="/battlemaps" element={ <MapsList /> } />
           </Routes>
         </>
         :
