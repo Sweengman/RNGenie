@@ -7,6 +7,7 @@ import AuthPage from '../AuthPage/AuthPage'
 import NavBar from '../../components/NavBar/NavBar'
 import NewMap from '../NewMap/NewMap'
 import MapsList from '../MapsList/MapsList'
+import NewFoes from '../NewFoe/NewFoe'
 
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
           <Routes>
             <Route path="/battlemaps/new" element={ <NewMap /> } />
             <Route path="/battlemaps" element={ <MapsList /> } />
+            <Route path="/foes/new" element={ <NewFoes /> } />
           </Routes>
         </>
         :

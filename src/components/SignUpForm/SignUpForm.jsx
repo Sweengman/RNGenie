@@ -3,13 +3,13 @@ import { Component } from 'react'
 import { signUp } from '../../utilities/users-service'
 
 export default class SignUpForm extends Component {
-state = {
-    name: '',
-    email: '',
-    password: '',
-    confirm: '',
-    error: '',
-}
+    state = {
+        name: '',
+        email: '',
+        password: '',
+        confirm: '',
+        error: '',
+    }
 
 
     handleChange = (evt) => {
