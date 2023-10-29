@@ -2,6 +2,7 @@ import { Component } from 'react'
 import AttackForm from '../../components/AttackForm/AttackForm'
 
 export default class NewFoes extends Component {
+   
     state = {
         name: '',
         folder: '',
@@ -29,7 +30,7 @@ export default class NewFoes extends Component {
 
     handleSubSetChange = (evt) => {
         this.setState({
-            attacks: [...this.state.attacks[this.state.idx], {[evt.target.name]: evt.target.value}]
+            [this.state.attacks[this.state.idx][evt.target.name]]: evt.target.value
 
         })
     }
@@ -47,10 +48,9 @@ export default class NewFoes extends Component {
     handleSubSetDirSubmit(evt) {
         evt.preventDefault()
         this.setState({
-            attacks: [
-                ...this.state.attacks[this.state.idx].direction, 
-                {[evt.target.name]: evt.target.value}
-            ]
+            
+                [this.state.attacks[this.state.idx].direction]: evt.target.value
+            
         })
         this.setState({
             idx: this.state.idx++
@@ -58,7 +58,6 @@ export default class NewFoes extends Component {
     }
 
     render() {
-
 
         return(
             <form>
