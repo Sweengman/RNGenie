@@ -7,6 +7,9 @@ export async function saveMap(mapData) {
 //takes a specific attack and the hover event coordinates, and calculates how the attack will spread
 export function calculateAttack(attack, x, y) {
     const coordinateArray = []
+    coordinateArray.push([x, y])
+    if (attack.spread > 0) return calculateSpread(attack.spread, x, y, coordinateArray)
+    
     const nArray = []
     const sArray = []
     const eArray = []
@@ -16,7 +19,6 @@ export function calculateAttack(attack, x, y) {
         1: 1,
         2: 'num'
     }
-    coordinateArray.push([x, y])
 
     calculate(x, (attack.north * -1), x, nArray)
     calculate(x, attack.south, x, sArray)
@@ -56,5 +58,48 @@ export function calculateAttack(attack, x, y) {
                 coordinateArray.push([coordNum, y + disp])
                 : coordinateArray.push([x + disp, coordNum])
         }
+    }
+
+    function calculateSpread(spread, x, y, finalArray) {
+        let xMax = x + spread
+        let xMin = x - spread
+        let yMax = y + spread
+        let yMin = y - spread
+        let xArray = []
+        let yArray = []
+        spreadHelper(x, xMax, xArray)
+        spreadHelper(x, xMin, xArray)
+        spreadHelper(y, yMax, yArray)
+        spreadHelper(y, yMin, yArray)
+        combineSpread()
+        console.log(finalArray)
+        return finalArray
+
+
+
+        //sub-Helper functions for calculateSpread
+        function spreadHelper(num, limitNum, array) {
+            if (num < limitNum) {
+                num ++
+                array.push(num)
+                spreadHelper(num, limitNum, array)
+            } else if (num > limitNum) {
+                num --
+                array.push(num)
+                spreadHelper(num, limitNum, array)
+            } else if (num === limitNum) {
+                return
+        }}
+
+        function combineSpread() {
+            if (xArray.length === yArray.length) {
+                for (let i = 0; i < xArray.length; i++) {
+                    finalArray.push([x, yArray[i]], [xArray[i], y])
+                    for (let j = 0; j < xArray.length; j++) {
+                        console.log('iterations')
+                        let specificCoord = [xArray[i], yArray[j]]
+                        let specificCoordAlt = [xArray[j], yArray[i]]
+                        finalArray.push(specificCoord, specificCoordAlt)
+        }}}}
     }
 }
