@@ -37,7 +37,7 @@ export function calculateAttack(attack, x, y) {
 
     //helper functions! Y = Y axis, X = X axis
     function calculate(num, numIncrease, numCurrent, array) {
-        console.log('x:', x, 'y:', y, 'match x or y:', num, 'add this to x or y:', numIncrease, 'should start at x or y then increase', numCurrent)
+        // console.log('x:', x, 'y:', y, 'match x or y:', num, 'add this to x or y:', numIncrease, 'should start at x or y then increase', numCurrent)
         const finalNum = num + numIncrease
         if (numCurrent === finalNum) return
         (numCurrent < finalNum) ? numCurrent ++ : numCurrent --
@@ -72,7 +72,6 @@ export function calculateAttack(attack, x, y) {
         spreadHelper(y, yMax, yArray)
         spreadHelper(y, yMin, yArray)
         combineSpread()
-        console.log(finalArray)
         return finalArray
 
 
@@ -96,7 +95,6 @@ export function calculateAttack(attack, x, y) {
                 for (let i = 0; i < xArray.length; i++) {
                     finalArray.push([x, yArray[i]], [xArray[i], y])
                     for (let j = 0; j < xArray.length; j++) {
-                        console.log('iterations')
                         let specificCoord = [xArray[i], yArray[j]]
                         let specificCoordAlt = [xArray[j], yArray[i]]
                         finalArray.push(specificCoord, specificCoordAlt)
