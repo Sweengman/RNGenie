@@ -7,8 +7,8 @@ export default function Gridling({ gridling, coordinatesArray, finalCoordArray, 
     let x = gridling.x
     let y = gridling.y
 
-    checkGrid(coordinatesArray, attack, setAttack, 'attack')
-    checkGrid(finalCoordArray, attack, setAttack, 'foe')
+    // checkGrid(coordinatesArray, attack, setAttack, 'attack')
+    checkGrid(finalCoordArray, attack, setAttack, 'attack')
     checkGrid(foeCoords, foe, setFoe, 'foe')
 
     function checkGrid(arrayCoords, setee, setter, newVal) {
@@ -22,9 +22,12 @@ export default function Gridling({ gridling, coordinatesArray, finalCoordArray, 
     }
     //helper function 
     function compareSets(setee, newVal, setter) {
-        if (setee !== newVal) {
+        if (setee == newVal) {
+            return
+        } else if (setee != newVal) {
             setter(newVal)
         }
+        
     }
 
         return(
