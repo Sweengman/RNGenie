@@ -2,6 +2,7 @@ import MapForm from '../../components/BattleMap/MapForm/MapForm'
 import FoeSelect from '../../components/BattleMap/FoeSelect/FoeSelect'
 import MapGrid from '../../components/BattleMap/MapGrid/MapGrid'
 import { saveMap } from '../../utilities/maps-service'
+import './NewMap.css'
 
 import { Component } from 'react'
 
@@ -11,12 +12,19 @@ export default class NewMap extends Component {
         folder: '',
         name: '',
         foes: '',
-        grid: ''
+        grid: '',
+        selected: {}
     }
 
     handleChange(evt) {
         this.setState({
             [evt.target.name]: evt.target.value
+        })
+    }
+
+    handleSelect(foe) {
+        this.setState({
+            selected: foe
         })
     }
 
@@ -30,14 +38,24 @@ export default class NewMap extends Component {
             console.error(err)
         }
     }
+    
     render() {
         return(
-            <form>
-            <MapGrid state={this.state} handleChange={this.handleChange.bind(this)} />
-            <MapForm state={this.state} handleChange={this.handleChange.bind(this)}/>
-            <FoeSelect state={this.state} handleChange={this.handleChange.bind(this)}/>
-            <button>Submit</button>
-            </form>
+            <>
+                <section className='grid-display'>
+                <MapGrid state={this.state} handleChange={this.handleChange.bind(this)} selectedFoe={this.state.selected} />
+                <FoeSelect 
+                state={this.state} 
+                handleSelect={this.handleSelect.bind(this)}
+                foes={this.props.foes}
+                user={this.props.user}
+                />
+                </section>
+                <form>
+                <MapForm state={this.state} handleChange={this.handleChange.bind(this)}/>
+                <button>Submit</button>
+                </form>
+            </>
         )
     }
 }

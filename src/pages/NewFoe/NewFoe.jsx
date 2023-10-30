@@ -1,17 +1,19 @@
-import { Component } from 'react'
 import AttackForm from '../../components/AttackForm/AttackForm'
+import './NewFoe.css'
+import { Component } from 'react'
+import { saveFoe } from '../../utilities/foes-service'
 
 export default class NewFoes extends Component {
    
     state = {
+        user: this.props.user._id,
         name: '',
         folder: '',
         affiliation: '',
         behavior: '',
-        idx: 0,
-        attacks: [{
+        attacks: {
             name: '',
-            dmg: '',
+            dmg: 0,
             dmgType: '',
             north: 0,
             south: 0,
@@ -19,9 +21,9 @@ export default class NewFoes extends Component {
             west: 0,
             displacement: 0,
             spread: 0,
-        }]
+        }
     }
-    
+
     handleChange = (evt) => {
         this.setState({
             [evt.target.name]: evt.target.value
@@ -29,38 +31,45 @@ export default class NewFoes extends Component {
     }
 
     handleSubSetChange = (evt) => {
+        const attacks = {...this.state.attacks}
+        attacks[evt.target.name] = evt.target.value
         this.setState({
-            [this.state.attacks[this.state.idx][evt.target.name]]: evt.target.value
-
+            attacks
         })
     }
 
-    handleSubmit(evt) {
+    async handleSubmit(evt) {
         evt.preventDefault()
         
         try{
-
+            const foeData = {...this.state}
+            await saveFoe(foeData)
+            this.setState({
+                name: '',
+                folder: '',
+                affiliation: '',
+                behavior: '',
+                attacks: {
+                    name: '',
+                    dmg: 0,
+                    dmgType: '',
+                    north: 0,
+                    south: 0,
+                    east: 0,
+                    west: 0,
+                    displacement: 0,
+                    spread: 0,
+        }
+            })
         } catch(err) {
             console.error(err)
         }
     }
 
-    handleSubSetDirSubmit(evt) {
-        evt.preventDefault()
-        this.setState({
-            
-                [this.state.attacks[this.state.idx].direction]: evt.target.value
-            
-        })
-        this.setState({
-            idx: this.state.idx++
-        })
-    }
-
     render() {
 
         return(
-            <form>
+            <form className='NewFoe' onSubmit={this.handleSubmit.bind(this)}>
                 <label>Name</label>
                 <input 
                 type='text' 
@@ -68,7 +77,6 @@ export default class NewFoes extends Component {
                 value={this.state.name}
                 onChange={this.handleChange}
                 />
-
                 <label>Folder</label>
                 <input 
                 type='text' 
@@ -94,9 +102,8 @@ export default class NewFoes extends Component {
                 />
 
                 <AttackForm state={this.state} handleSubSetChange={this.handleSubSetChange.bind(this)} />
-                <label>Attacks</label>
-                {this.state.attacks.map(attribute => <input type="text" value={this.state.attacks[attribute]} />)}
-                <button>Submit</button>
+
+                <button type='submit'>Submit</button>
             </form>
         )
     }

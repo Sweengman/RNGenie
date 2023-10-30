@@ -14,7 +14,11 @@ export default function NavBar({ user }) {
             &nbsp; | &nbsp;
             <Link to='/battlemaps/new'>New Battlemap</Link>
             &nbsp; | &nbsp;
+            <Link to='/foes'>Foes</Link>
+            &nbsp; | &nbsp;
             <Link to='/foes/new'>New Foe</Link>
+            &nbsp; | &nbsp;
+            <Link to='/'>Home</Link>
             &nbsp; | &nbsp;
             <span>Welcome, {user.name} </span>
             &nbsp; | &nbsp;

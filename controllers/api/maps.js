@@ -18,6 +18,7 @@ async function saveMap(req, res, next) {
 async function viewAll(res, req, next) {
     try {
         const maps = await BattleMap.find({[req.body.userKey]: req.body.userVal})
+        res.json(maps)
     } catch(err) {
         res.status(400).json(err)
     }

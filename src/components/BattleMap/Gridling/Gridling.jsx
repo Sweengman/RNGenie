@@ -1,15 +1,32 @@
 import './Gridling.css'
+import { useState } from 'react'
 
-export default function Gridling({ gridling }) {
-    let value = gridling.value
+export default function Gridling({ gridling, coordinatesArray, handleHover }) {
+    const [foe, setFoe] = useState('')
+    const [attack, setAttack] = useState('')
     let x = gridling.x
     let y = gridling.y
+    
+    if (coordinatesArray.find((array) => array[0] === x && array[1] === y)) {
+        compareSets(foe, 'foe', setFoe)
+        compareSets(attack, 'attack', setAttack)
+    } else {
+        compareSets(foe, '', setFoe)
+        compareSets(attack, '', setAttack)
+    }
+    
+    //helper function 
+    function compareSets(set, comp, setter) {
+        if (set !== comp) {
+            setter(comp)
+        }
+    }
     const gridCodex = {
         0: '!',
     }
         return(
-        <div className="Gridling" >
-            {gridCodex[value]}
+        <div className={`Gridling ${foe} ${attack}`} onMouseEnter={handleHover}>
+            {x}/{y}
         </div>
     )
 }

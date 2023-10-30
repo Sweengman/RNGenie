@@ -1,5 +1,4 @@
-import DirectionForm from '../DirectionForm/DirectionForm'
-import { useState } from 'react'
+import { STATES } from 'mongoose'
 
 export default function AttackForm({ state, handleSubSetChange }) {
     return(
@@ -7,7 +6,7 @@ export default function AttackForm({ state, handleSubSetChange }) {
             <h1>AttackForm</h1>
             <label>Name</label>
             <input 
-            type="text" 
+            type='text' 
             name='name' 
             value={state.attacks.name}
             onChange={handleSubSetChange}
@@ -15,28 +14,63 @@ export default function AttackForm({ state, handleSubSetChange }) {
 
             <label>Damage</label>
             <input 
-            type="text" 
-            name='damage' 
+            type='number' 
+            name='dmg' 
             value={state.attacks.dmg}
             onChange={handleSubSetChange}
             />
 
             <label>DamageType</label>
             <input 
-            type="text" 
-            name='damageType' 
+            type='text' 
+            name='dmgType' 
             value={state.attacks.dmgType}
             onChange={handleSubSetChange}
             />
 
-            <label>behavior</label>
+            <label>North</label>
             <input 
-            type="text" 
-            name='behavior' 
-            value={state.attacks.behavior}
+            type='number' 
+            value={state.attacks.north} 
+            name='north'
             onChange={handleSubSetChange}
             />
-            <DirectionForm state={state} handleSubSetChange={handleSubSetChange} />
+
+
+            <label>South</label>
+            <input 
+            type='number' 
+            value={state.attacks.south} 
+            name='south'
+            onChange={handleSubSetChange}
+            />
+            
+
+
+            <label>East</label>
+            <input 
+            type='number' 
+            value={state.attacks.east}  
+            name='east'
+            onChange={handleSubSetChange}
+            />
+            
+
+
+            <label>West</label>
+            <input 
+            type='number' 
+            value={state.attacks.west}  
+            name='west'
+            onChange={handleSubSetChange}
+            />
+            
+            <label>Displacement</label>
+            <input type='number' name='displacement'  value={state.attacks.displacement} onChange={handleSubSetChange} />
+        
+
+            <label>Spread</label>
+            <input type='number' name='spread'  value={state.attacks.spread} onChange={handleSubSetChange} />
         </div>
 
     )
