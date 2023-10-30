@@ -14,7 +14,7 @@ import FoesList from '../FoesList/FoesList'
 export default function App() {
   const [user, setUser] = useState(getUser())
   const [foes, setFoes] = useState(null)
-  useEffect(() => foesBinder)
+  useEffect(() => foesBinder, foes)
 
   async function foesBinder() {
     let foesList

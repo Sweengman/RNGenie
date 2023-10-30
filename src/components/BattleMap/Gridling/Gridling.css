@@ -12,3 +12,10 @@
     text-justify: center;
     font-size: x-small;
 }
+
+.foe {
+    background-color: black !important;
+}
+.attack {
+    background-color: red;
+}

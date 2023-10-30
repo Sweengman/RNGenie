@@ -7,6 +7,11 @@ export default function Gridling({ gridling, coordinatesArray, handleHover }) {
     let x = gridling.x
     let y = gridling.y
     
+    // function checkCoordinates() {
+    //     for (let array of coordinatesArray) {
+
+    //     }
+    // }
     if (coordinatesArray.find((array) => array[0] === x && array[1] === y)) {
         compareSets(foe, 'foe', setFoe)
         compareSets(attack, 'attack', setAttack)
@@ -21,11 +26,9 @@ export default function Gridling({ gridling, coordinatesArray, handleHover }) {
             setter(comp)
         }
     }
-    const gridCodex = {
-        0: '!',
-    }
+
         return(
-        <div className={`Gridling ${foe} ${attack}`} onMouseEnter={handleHover}>
+        <div className={`Gridling ${foe} ${attack}`} name={[x,y]} onMouseEnter={() => handleHover(x, y)}>
             {x}/{y}
         </div>
     )

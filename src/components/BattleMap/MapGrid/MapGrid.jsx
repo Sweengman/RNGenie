@@ -7,8 +7,9 @@ import { useState } from 'react'
 export default function MapGrid({state, handleChange, selectedFoe}) {
     const [coordinatesArray, setCoordinatesArray] = useState([])
 
-    function handleHover(evt) {
-        const [x, y] = evt.target.coordinates
+    //must flip x and y to be accurate with program based grids
+    function handleHover(x,y) {
+        if (Object.keys(selectedFoe).length === 0) return
         const attack = selectedFoe.attacks
          setCoordinatesArray(mapsService.calculateAttack(attack, x, y))
     }
