@@ -7,6 +7,8 @@ router.get('/:id', ensureLoggedIn, mapsCtrl.viewAll)
 
 router.post('/new', mapsCtrl.saveMap)
 
+router.post('/delete', mapsCtrl.deleteOne)
+
 
 module.exports = router
 

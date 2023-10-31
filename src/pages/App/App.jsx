@@ -56,7 +56,7 @@ export default function App() {
           <NavBar user={user} />
           <Routes>
             <Route path="/battlemaps/new" element={ <NewMap user={user} foes={foes} mapsBinder={mapsBinder} /> } />
-            <Route path="/battlemaps" element={ <MapsList user={user} battleMaps={battleMaps} /> } />
+            <Route path="/battlemaps" element={ <MapsList user={user} battleMaps={battleMaps} mapsBinder={mapsBinder} /> } />
             <Route path="/foes/new" element={ <NewFoes user={user} foesBinder={foesBinder} /> } />
             <Route path="/foes" element={ <FoesList foes={foes} user={user} /> } />
           </Routes>

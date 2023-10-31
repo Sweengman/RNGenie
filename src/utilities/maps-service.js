@@ -9,6 +9,11 @@ export async function viewMaps(user) {
     return maps
 }
 
+export async function deleteOne(mapID) {
+     const map = await mapsAPI.deleteOne(mapID)
+     return map
+}
+
 
 
 
@@ -16,7 +21,6 @@ export async function viewMaps(user) {
 
 //takes a specific attack and the hover event coordinates, and calculates how the attack will spread
 export function calculateAttack(attack, x, y) {
-    console.log(attack)
     const coordinateArray = []
     coordinateArray.push([x, y])
     if (attack.spread > 0) return calculateSpread(attack.spread, x, y, coordinateArray)

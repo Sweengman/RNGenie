@@ -8,3 +8,7 @@ export function saveMap(mapData) {
 export function viewMaps(user) {
     return sendRequest(BASE_URL + `/${user.email}`)
 }
+
+export function deleteOne(mapID) {
+    sendRequest(BASE_URL + '/delete', 'POST', mapID)
+}

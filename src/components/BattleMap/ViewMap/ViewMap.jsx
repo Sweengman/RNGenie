@@ -3,12 +3,11 @@ import * as mapsService from '../../../utilities/maps-service'
 import gridArray from '../../../utilities/grid-init'
 import './ViewMap.css'
 
-export default function ViewMap({ bMap }) {
+export default function ViewMap({ bMap, user, mapsBinder }) {
     const foeDetails = bMap.attacks.map(gridObj => {
         if (!!gridObj.foe) return gridObj 
     })
     const foeCoords = []
-    console.log(foeCoords)
     let finalCoordArray // = []
     const coordinatesArray = []
     parseFoes()
@@ -19,7 +18,6 @@ export default function ViewMap({ bMap }) {
         let finalCoordArrayHelper = [...foeDetails.map(foeDetail => mapsService.calculateAttack(foeDetail.attack, foeDetail.x, foeDetail.y))]
         finalCoordArray = finalCoordArrayHelper.flat()
     }
-    console.log(foeCoords, finalCoordArray)
 
     function handleHover() {
 
@@ -32,9 +30,16 @@ export default function ViewMap({ bMap }) {
     function handleMouseOut() {
 
     }
+
+    async function handleDelete() {
+        if(user._id === bMap.user) {
+       await mapsService.deleteOne(bMap)
+        mapsBinder()
+        }
+    }
     return(
         <>
-        <br/> <br/>
+        <br/> <br/> <br/>
             <h3>{bMap.name}</h3>
             <div className='MapGrid grid-sections'> 
             {gridArray.map(array => array.map(gridling => <Gridling 
@@ -47,6 +52,7 @@ export default function ViewMap({ bMap }) {
             handleClick={handleClick}
             />))}
             </div>
+            <button onClick={handleDelete} >DELETE</button>
         </>
     )
 }
