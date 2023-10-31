@@ -4,8 +4,19 @@ export async function saveMap(mapData) {
     const map = await mapsAPI.saveMap(mapData)
 }
 
+export async function viewMaps(user) {
+    const maps = [...await mapsAPI.viewMaps(user)]
+    return maps
+}
+
+
+
+
+
+
 //takes a specific attack and the hover event coordinates, and calculates how the attack will spread
 export function calculateAttack(attack, x, y) {
+    console.log(attack)
     const coordinateArray = []
     coordinateArray.push([x, y])
     if (attack.spread > 0) return calculateSpread(attack.spread, x, y, coordinateArray)

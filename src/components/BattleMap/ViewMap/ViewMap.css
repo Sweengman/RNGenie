@@ -1,0 +1,11 @@
+.MapGrid {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    background-color: rgba(100, 44, 9, 0.536);
+    height: 43rem;
+    width: 43rem;
+    margin: auto;
+}

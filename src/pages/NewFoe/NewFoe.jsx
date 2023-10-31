@@ -1,7 +1,7 @@
 import AttackForm from '../../components/AttackForm/AttackForm'
 import './NewFoe.css'
 import { Component } from 'react'
-import { saveFoe } from '../../utilities/foes-service'
+import { saveFoe, viewFoes } from '../../utilities/foes-service'
 
 export default class NewFoes extends Component {
    
@@ -60,7 +60,9 @@ export default class NewFoes extends Component {
                     displacement: 0,
                     spread: 0,
         }
+        
             })
+            this.props.foesBinder()
         } catch(err) {
             console.error(err)
         }

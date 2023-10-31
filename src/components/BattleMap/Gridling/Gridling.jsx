@@ -7,24 +7,28 @@ export default function Gridling({ gridling, coordinatesArray, finalCoordArray, 
     let x = gridling.x
     let y = gridling.y
 
-    // checkGrid(coordinatesArray, attack, setAttack, 'attack')
-    checkGrid(finalCoordArray, attack, setAttack, 'attack')
-    checkGrid(foeCoords, foe, setFoe, 'foe')
+    if(!checkGrid(foeCoords, foe, setFoe, 'foe')) {
+        if(!checkGrid(finalCoordArray, attack, setAttack, 'attack')) {
+            checkGrid(coordinatesArray, attack, setAttack, 'attack')
+        }
+    }
+    
 
     function checkGrid(arrayCoords, setee, setter, newVal) {
         if(arrayCoords) {
             if (arrayCoords.find((array) => (array[0] === x && array[1] === y))) {
                 compareSets(setee, newVal, setter)
-            } else {
+                return true
+            } else if (arrayCoords && arrayCoords !== finalCoordArray) {
                 compareSets(setee, '', setter)
+                return false
             }
         }
     }
     //helper function 
     function compareSets(setee, newVal, setter) {
-        if (setee == newVal) {
-            return
-        } else if (setee != newVal) {
+        if (setee === newVal) {
+        } else if (setee !== newVal) {
             setter(newVal)
         }
         

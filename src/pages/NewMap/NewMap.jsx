@@ -1,20 +1,28 @@
-import MapForm from '../../components/BattleMap/MapForm/MapForm'
 import FoeSelect from '../../components/BattleMap/FoeSelect/FoeSelect'
+import MapForm from '../../components/BattleMap/MapForm/MapForm'
 import MapGrid from '../../components/BattleMap/MapGrid/MapGrid'
+import gridArray from '../../utilities/grid-init'
 import { saveMap } from '../../utilities/maps-service'
 import './NewMap.css'
-
 import { Component } from 'react'
 
 export default class NewMap extends Component {
     state = {
-        user: '',
+        user: this.props.user._id,
         folder: '',
         name: '',
-        foes: '',
-        grid: '',
+        foes: [],
+        attacks: [],
+        grid: [gridArray.map(array => array.map(square => {
+            return { x: square.x, y: square.y }
+        }))],
         selected: {}
     }
+    handleGridChange(gridlingObj) {
+        this.setState({foes: [...this.state.foes, gridlingObj.foe]})
+        this.setState({attacks:[...this.state.attacks, gridlingObj]})
+    }
+
 
     handleChange(evt) {
         this.setState({
@@ -28,33 +36,47 @@ export default class NewMap extends Component {
         })
     }
 
-    async handleSubmit(evt) {
-        evt.preventDefault()
-
+    async handleSubmit() {
         try {
-            const mapData = {...this.state}
+            const mapData = { ...this.state }
             await saveMap(mapData)
-        } catch(err) {
+            this.props.mapsBinder()
+
+            this.setState({
+                user: this.props.user._id,
+                folder: '',
+                name: '',
+                foes: '',
+                grid: [gridArray.map(array => array.map(square => {
+                    return { x: square.x, y: square.y }
+                }))],
+                selected: {}
+            })
+        } catch (err) {
             console.error(err)
         }
     }
-    
+
     render() {
-        return(
+        return (
             <>
                 <section className='grid-display'>
-                <MapGrid state={this.state} handleChange={this.handleChange.bind(this)} selectedFoe={this.state.selected} />
-                <FoeSelect 
-                state={this.state} 
-                handleSelect={this.handleSelect.bind(this)}
-                foes={this.props.foes}
-                user={this.props.user}
-                />
+                    <MapGrid
+                        state={this.state}
+                        handleChange={this.handleChange.bind(this)}
+                        selectedFoe={this.state.selected}
+                        handleGridChange={this.handleGridChange.bind(this)}
+                        handleSubmit={this.handleSubmit.bind(this)}
+                    />
+                    <FoeSelect
+                        state={this.state}
+                        handleSelect={this.handleSelect.bind(this)}
+                        foes={this.props.foes}
+                        user={this.props.user}
+                    />
                 </section>
-                <form>
-                <MapForm state={this.state} handleChange={this.handleChange.bind(this)}/>
-                <button>Submit</button>
-                </form>
+                <MapForm state={this.state} handleChange={this.handleChange.bind(this)} />
+                
             </>
         )
     }
