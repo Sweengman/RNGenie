@@ -14,8 +14,8 @@ import FoesList from '../FoesList/FoesList'
 
 export default function App() {
   const [user, setUser] = useState(getUser())
-  const [foes, setFoes] = useState(viewFoes(user))
-  const [battleMaps, setBattleMaps] = useState(viewMaps(user))
+  const [foes, setFoes] = useState([])
+  const [battleMaps, setBattleMaps] = useState([])
   const foesRef = useRef(foes)
   const mapsRef = useRef(battleMaps)
 
@@ -26,7 +26,7 @@ export default function App() {
     let foesList
     try {
       foesList = await viewFoes(user)
-      if(foesList !== foes) {
+      if(!!foesList.length && foesList !== foes) {
         setFoes(foesList)
       }
       foesRef.current = foesList
@@ -39,7 +39,7 @@ export default function App() {
     let mapsList
     try {
       mapsList = await viewMaps(user)
-      if(mapsList !== battleMaps) {
+      if(!!mapsList.length && mapsList !== battleMaps) {
         setBattleMaps(mapsList)
       }
       mapsRef.current = mapsList
@@ -54,6 +54,7 @@ export default function App() {
       { user ?
         <> 
           <NavBar user={user} />
+          <h1>Welcome to RNGenie!</h1>
           <Routes>
             <Route path="/battlemaps/new" element={ <NewMap user={user} foes={foes} mapsBinder={mapsBinder} /> } />
             <Route path="/battlemaps" element={ <MapsList user={user} battleMaps={battleMaps} mapsBinder={mapsBinder} /> } />

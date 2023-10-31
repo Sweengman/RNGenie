@@ -11,7 +11,7 @@ module.exports = {
 async function login(req, res) {
     try {
         const user = await User.findOne({email: req.body.email})
-        if (!user) {console.log('ope')}
+        
 
         const match = await bcrypt.compare(req.body.password, user.password);
 
@@ -19,7 +19,7 @@ async function login(req, res) {
         //login
         const token = createJWT(user)
         res.json(token)
-    } else { console.log('oopsies'); res.status(400).json('Bad Credentials')}
+    } else { res.status(400).json('Bad Credentials')}
 
     } catch(err) {
         console.error(err)
@@ -28,6 +28,7 @@ async function login(req, res) {
 }
 
 async function create(req, res) {
+    console.log(req.body)
     try {
         const user = await User.create(req.body)
 
@@ -35,8 +36,8 @@ async function create(req, res) {
         
         res.json(token)
     } catch (err) {
-        console.log('oops')
-        res.status(400).json('Incorrect email')
+        console.error(err)
+        res.status(400).json(err)
     }
 }
 
