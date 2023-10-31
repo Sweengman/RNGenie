@@ -1,5 +1,4 @@
 import './MapForm.css'
-import { Component } from 'react'
 
 export default function MapForm({ state, handleChange }) {
 

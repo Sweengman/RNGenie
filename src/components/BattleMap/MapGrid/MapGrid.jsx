@@ -4,7 +4,7 @@ import * as mapsService from '../../../utilities/maps-service'
 import { useState } from 'react'
 import gridArray from '../../../utilities/grid-init'
 
-export default function MapGrid({state, handleGridChange, selectedFoe, handleSubmit, mapObj}) {
+export default function MapGrid({ handleGridChange, selectedFoe, handleSubmit }) {
     const [coordinatesArray, setCoordinatesArray] = useState([])
     const [finalCoordArray, setFinalCoordArray] = useState([])
     const [foeCoords, setFoeCoords] = useState([])
