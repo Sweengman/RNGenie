@@ -13,9 +13,9 @@ export default function FoeSelect({ foes, user, handleSelect}) {
     return(
         <div className="FoeSelect">
             FoeSelect
-            {foes ? 
+            {foes.length ? 
             foes.map(foe => <Foe foe={foe} user={user} selector={selector} handleSelector={handleSelector} />)
-            : null
+            : <p>Loading...</p>
             }
         </div>
     )

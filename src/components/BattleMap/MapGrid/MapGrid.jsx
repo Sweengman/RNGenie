@@ -68,7 +68,7 @@ export default function MapGrid({state, handleGridChange, selectedFoe, handleSub
            />))}
         </div>
            <form onSubmit={handleFullSubmit}>  
-                <button type='submit'>Submit</button>
+                <button className='grid-save-button' type='submit'>Submit</button>
             </form>
             </>
     )

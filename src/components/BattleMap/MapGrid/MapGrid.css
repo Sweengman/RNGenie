@@ -8,4 +8,11 @@
     height: 43rem;
     width: 43rem;
     margin: 0;
+    margin-right: -10rem;
+}
+
+.grid-save-button {
+    display: inline-block;
+    height: 43rem;
+    margin: 0;
 }

@@ -74,8 +74,8 @@ export default class NewMap extends Component {
                         foes={this.props.foes}
                         user={this.props.user}
                     />
+                    <MapForm state={this.state} handleChange={this.handleChange.bind(this)} />
                 </section>
-                <MapForm state={this.state} handleChange={this.handleChange.bind(this)} />
                 
             </>
         )
