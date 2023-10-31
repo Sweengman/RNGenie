@@ -1,7 +1,7 @@
 import AttackForm from '../../components/AttackForm/AttackForm'
 import './NewFoe.css'
 import { Component } from 'react'
-import { saveFoe, viewFoes } from '../../utilities/foes-service'
+import { saveFoe } from '../../utilities/foes-service'
 
 export default class NewFoes extends Component {
    
