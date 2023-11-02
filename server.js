@@ -15,6 +15,7 @@ const CLIENTDEVPORT = 5173
 app.use(cors({ origin: process.env.CLIENT_ORIGIN || `http://localhost:${CLIENTDEVPORT}` }))
    
 app.use(logger('dev'));
+app.use(cors())
 app.use(express.json());
 
 
