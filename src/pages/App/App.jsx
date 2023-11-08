@@ -41,7 +41,7 @@ export default function App() {
       mapsList = await viewMaps(user)
       if(!!mapsList.length && mapsList !== battleMaps) {
         setBattleMaps(mapsList)
-      }
+      } else if(!mapsList.length) {setBattleMaps([])}
       mapsRef.current = mapsList
     } catch(err) {
       console.error(err)
@@ -51,6 +51,7 @@ export default function App() {
   
   return (
     <main className="App">
+      { user ? console.log(user) : console.log('nuthin') }
       { user ?
         <> 
           <NavBar user={user} />
@@ -59,7 +60,7 @@ export default function App() {
             <Route path="/battlemaps/new" element={ <NewMap user={user} foes={foes} mapsBinder={mapsBinder} /> } />
             <Route path="/battlemaps" element={ <MapsList user={user} battleMaps={battleMaps} mapsBinder={mapsBinder} /> } />
             <Route path="/foes/new" element={ <NewFoes user={user} foesBinder={foesBinder} /> } />
-            <Route path="/foes" element={ <FoesList foes={foes} user={user} /> } />
+            <Route path="/foes" element={ <FoesList user={user} foes={foes} /> } />
           </Routes>
         </>
         :

@@ -33,7 +33,7 @@ export default function ViewMap({ bMap, user, mapsBinder }) {
 
     async function handleDelete() {
         if(user._id === bMap.user) {
-       await mapsService.deleteOne(bMap)
+        await mapsService.deleteOne(bMap)
         mapsBinder()
         }
     }

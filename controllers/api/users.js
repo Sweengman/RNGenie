@@ -28,7 +28,6 @@ async function login(req, res) {
 }
 
 async function create(req, res) {
-    console.log(req.body)
     try {
         const user = await User.create(req.body)
 
@@ -42,7 +41,6 @@ async function create(req, res) {
 }
 
 function checkToken(req, res) {
-    console.log('req.user', req.user)
     res.json(req.exp)
 }
 

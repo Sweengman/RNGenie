@@ -1,5 +1,5 @@
 import sendRequest from './send-request'
-const BASE_URL = 'https://rngenie.onrender.com/api/foes'
+const BASE_URL = '/api/foes'
 
 export function saveFoe(foeData) {
     return sendRequest(BASE_URL + '/new', 'POST', foeData)
