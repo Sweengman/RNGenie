@@ -19,7 +19,7 @@ export default function NavBar({ user }) {
             <Link to='/foes/new'>New Foe</Link>
             &nbsp; | &nbsp;
             <Link to='/'>Home</Link>
-            &nbsp; | &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             <span>Welcome, {user.name} </span>
             &nbsp; | &nbsp;
             <Link to="" onClick={ handleLogOut }>Log Out</Link>
