@@ -1,6 +1,5 @@
 import sendRequest from './send-request'
-const BASE_URL = 'https://rngeniecli.onrender.com/api/users'
-
+const BASE_URL = 'https://rngenie.onrender.com/api/users'
 export function signUp(userData) {
     return sendRequest(BASE_URL, 'POST', userData);
   }
