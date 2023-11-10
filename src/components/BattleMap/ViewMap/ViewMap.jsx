@@ -18,7 +18,7 @@ export default function ViewMap({ bMap, user, mapsBinder }) {
         let finalCoordArrayHelper = [...foeDetails.map(foeDetail => mapsService.calculateAttack(foeDetail.attack, foeDetail.x, foeDetail.y))]
         finalCoordArray = finalCoordArrayHelper.flat()
     }
-
+    // these functions will be used to add dynamic elements to previously built maps. Currently iceboxed
     function handleHover() {
 
     }
@@ -33,8 +33,8 @@ export default function ViewMap({ bMap, user, mapsBinder }) {
 
     async function handleDelete() {
         if(user._id === bMap.user) {
-        await mapsService.deleteOne(bMap)
-        mapsBinder()
+        const deletedMap = await mapsService.deleteOne(bMap)
+        mapsBinder(deletedMap)
         }
     }
     return(

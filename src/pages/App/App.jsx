@@ -35,7 +35,8 @@ export default function App() {
     }
   }
 
-  async function mapsBinder() {
+  async function mapsBinder(deletedMap) {
+    if (!!deletedMap) return setBattleMaps(battleMaps.filter(map => {if(map != deletedMap) return map }))
     let mapsList
     try {
       mapsList = await viewMaps(user)
