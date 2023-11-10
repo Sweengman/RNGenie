@@ -12,6 +12,7 @@
 JS, JSX, CSS, React, MongoDB, Express, Json, JXT
 
 ## what do I need to do?
+[Try the App!](https://rngeniecli.onrender.com/)
 Simply log in, create some generic foes, and create a map!
 
 
